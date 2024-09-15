@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Tasks from './pages/tasks';
 import Play from './pages/play';
 import MyBand from './pages/myBand';
+import Login from './pages/login';
 
 import Navigation from './pages/components/navigation';
 
@@ -12,7 +13,7 @@ const useRoutes = isAuthenticated => {
     <Router>
       {/* <Suspense fallback={<Loading/>}> */}
         <Routes>
-          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/*" element={<Tasks />} />
           <Route path="/play" element={<Play />} />
           <Route path="/band" element={<MyBand />} />
         </Routes>
@@ -25,13 +26,13 @@ const useRoutes = isAuthenticated => {
     // <Suspense fallback={<Loading/>}>
       <Router>
         <Routes>
-          <Route path="/" element={<MyBand />} />
+          <Route path="/*" element={<Login />} />
         </Routes>
       </Router>
     // </Suspense>
   );
 
-  return !isAuthenticated ? AuthenticatedRoutes : UnauthenticatedRoutes;
+  return isAuthenticated ? AuthenticatedRoutes : UnauthenticatedRoutes;
 };
 
 export default useRoutes;
